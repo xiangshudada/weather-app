@@ -7,7 +7,7 @@ zipCode = ''
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-zipCode = document.getElementById('zip').value;
+
 let temp = 0 
 const retrieveData = async (url,zipcode,api) => {
     const request = await fetch(url+zipcode+api)
@@ -47,8 +47,9 @@ const updateUI = async () => {
 document.getElementById('generate').addEventListener('click', performAction);
 
 
- function performAction(){
+function performAction(){
     const feel = document.querySelector('#feelings').value
+    zipCode = document.getElementById('zip').value;
     retrieveData(baseURL,zipCode,apiKey)
     .then(()=>{
         postData('/add',{'temp':temp,'feeling':feel,'date':newDate})
